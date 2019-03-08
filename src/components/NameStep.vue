@@ -10,12 +10,45 @@
         </v-text-field>
       </v-flex>
       <v-flex xs12>
-        <v-text-field
-          label="Date of Birth"
-          single-line
-          outline
+        <v-dialog
+          ref="dobPicker"
+          v-model="dobModal"
+          :return-value.sync="dob"
+          persistent
+          lazy
+          full-width
+          width="300"
         >
-        </v-text-field>
+          <template v-slot:activator="{ on }">
+            <v-text-field
+              v-model="dob"
+              label="Date of Birth"
+              readonly
+              v-on="on"
+            >
+            </v-text-field>
+            <v-date-picker
+              v-model="dob"
+              scrollable
+            >
+              <v-spacer></v-spacer>
+              <v-btn
+                flat
+                color="primary"
+                @click="dobModal = false"
+              >
+                Cancel
+              </v-btn>
+              <v-btn
+                flat
+                color="primary"
+                @click="$refs.dobPicker.save(dob)"
+              >
+                OK
+              </v-btn>
+            </v-date-picker>
+          </template>
+        </v-dialog>
       </v-flex>
       <v-flex xs12>
         <v-select
@@ -34,6 +67,8 @@ export default {
   name: 'NameStep',
   data () {
     return {
+      dob: new Date().toISOString().substr(0, 10),
+      dobModal: false,
       genders: ['Male', 'Female']
     }
   }
