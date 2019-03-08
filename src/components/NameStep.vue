@@ -1,9 +1,15 @@
 <template>
   <v-card>
     <v-layout wrap>
-      <v-flex xs12>
+      <v-flex row xs12>
         <v-text-field
-          label="name"
+          label="First Name"
+          single-line
+          outline
+        >
+        </v-text-field>
+        <v-text-field
+          label="Last Name"
           single-line
           outline
         >
