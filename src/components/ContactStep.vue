@@ -2,7 +2,18 @@
   <v-card>
     <v-layout>
       <v-flex>
-        <h1>Silence is golden.</h1>
+        <v-text-field
+          label="Email Address"
+          single-line
+          outline
+        >
+        </v-text-field>
+        <v-text-field
+          label="Phone Number"
+          single-line
+          outline
+        >
+        </v-text-field>
         <v-btn
           color="primary"
         >
