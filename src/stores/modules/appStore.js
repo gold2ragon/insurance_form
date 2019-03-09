@@ -2,7 +2,8 @@ const state = {
   step: 1,
   year: '',
   make: '',
-  model: ''
+  model: '',
+  owndership: ''
 }
 
 const mutations = {
@@ -14,6 +15,9 @@ const mutations = {
   },
   SET_MODEL (state, payload) {
     state.model = payload
+  },
+  SET_OWNERSHIP (state, payload) {
+    state.owndership = payload
   },
   SET_STEP (state, payload) {
     state.step = payload
@@ -29,6 +33,9 @@ const actions = {
   },
   setModel (context, payload) {
     context.commit('SET_MODEL', payload)
+  },
+  setOwnership (context, payload) {
+    context.commit('SET_OWNERSHIP', payload)
   },
   setStep (context, payload) {
     context.commit('SET_STEP', payload)

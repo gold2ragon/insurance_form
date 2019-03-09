@@ -9,8 +9,11 @@
         <v-divider></v-divider>
         <v-stepper-step :complete="step > 3" step="3">Select Model</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step step="4">Select Name</v-stepper-step>
-
+        <v-stepper-step :complete="step > 4" step="4">Select Name</v-stepper-step>
+        <v-divider></v-divider>
+        <v-stepper-step :complete="step > 5" step="5"></v-stepper-step>
+        <v-divider></v-divider>
+        <v-stepper-step step="6"></v-stepper-step>
       </v-stepper-header>
       <v-stepper-items>
         <v-stepper-content step="1">
@@ -25,12 +28,20 @@
         <v-stepper-content step="4">
           <name-step></name-step>
         </v-stepper-content>
+        <v-stepper-content step="5">
+          <address-step></address-step>
+        </v-stepper-content>
+        <v-stepper-content step="6">
+          <contact-step></contact-step>
+        </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
   </v-container>
 </template>
 
 <script>
+import AddressStep from './AddressStep.vue'
+import ContactStep from './ContactStep.vue'
 import MakeStep from './MakeStep.vue'
 import ModelStep from './ModelStep.vue'
 import NameStep from './NameStep.vue'
@@ -39,6 +50,8 @@ import YearStep from './YearStep.vue'
 export default {
   name: 'InsuranceForm',
   components: {
+    AddressStep,
+    ContactStep,
     MakeStep,
     ModelStep,
     NameStep,

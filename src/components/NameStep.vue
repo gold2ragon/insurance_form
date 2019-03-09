@@ -14,8 +14,6 @@
           outline
         >
         </v-text-field>
-      </v-flex>
-      <v-flex xs12>
         <v-menu
           v-model="dobMenu"
           :close-on-content-click="false"
@@ -37,14 +35,18 @@
           </template>
           <v-date-picker v-model="dob" @input="dobMenu = false"></v-date-picker>
         </v-menu>
-      </v-flex>
-      <v-flex xs12>
         <v-select
           :items="genders"
           label="Gender"
           outline
         >
         </v-select>
+        <v-btn
+          color="primary"
+          @click="onNext"
+        >
+          Next
+        </v-btn>
       </v-flex>
     </v-layout>
   </v-card>
@@ -58,6 +60,11 @@ export default {
       dob: new Date().toISOString().substr(0, 10),
       dobMenu: false,
       genders: ['Male', 'Female']
+    }
+  },
+  methods: {
+    onNext () {
+      this.$store.dispatch('appStore/setStep', 5)
     }
   }
 }
