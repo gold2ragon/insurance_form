@@ -29,15 +29,24 @@ export default {
       // Acura Models//
       if (year === '2019' && make === 'ACURA') {
         modelList = ['ILX', 'MDX', 'NSX', 'RDX', 'RLX', 'TLX']
-      } else if (year === '2019' && make === 'ACURA') {
+      }
+      if (year === '2018' && make === 'ACURA') {
         modelList = ['ILX', 'MDX', 'NSX', 'RDX', 'RLX', 'TLX']
-      } else if (year === '2017' && make === 'ACURA') {
+      }
+      if (year === '2017' && make === 'ACURA') {
         modelList = ['ILX', 'MDX', 'NSX', 'RDX', 'RLX', 'TLX']
-      } else if (year === '2016' && make === 'ACURA') {
-        modelList = ['ILX', 'MDX', 'RDX', 'RLX', 'TLX']
-      } else if (year === '2015' && make === 'ACURA') {
+      }
+      if (year === '2016' && make === 'ACURA') {
         modelList = ['ILX', 'MDX', 'RDX', 'RLX', 'TLX']
       }
+      if (year === '2015' && make === 'ACURA') {
+        modelList = ['ILX', 'MDX', 'RDX', 'RLX', 'TLX']
+      }
+      if (year === '2014' && make === 'ACURA') {
+        modelList = ['ILX', 'MDX', 'RDX', 'RLX', 'TL', 'TSX']
+      }
+
+
 
       // BMW Models//
       if (year === '2019' && make === 'BMW') {
