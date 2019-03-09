@@ -21,7 +21,31 @@ export default {
     return {
       makes: [
         'ACURA',
-        'BMW'
+        'AUDI',
+        'BMW',
+        'BUICK',
+        'CADILLAC',
+        'CHEVOLET',
+        'CHRYSLER',
+        'DODGE',
+        'FORD',
+        'GMC',
+        'HYUNDAI',
+        'JEEP',
+        'HONDA',
+        'KIA',
+        'LEXUS',
+        'MAZDA',
+        'MERCEDES',
+        'MITSUBISHI',
+        'NISSAN',
+        'PORSCHE',
+        'RAM',
+        'SUBARU',
+        'TESLA',
+        'TOYOTA',
+        'VOLKSWAGEN',
+        'VOLVO'
       ]
     }
   },
