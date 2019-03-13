@@ -96,6 +96,44 @@ export default {
       if (year === '1997' && make === 'ACURA') {
         modelList = ['2.5TL',  '3.2TL', '3.5RL', 'INTEGRA', 'NSX', 'SLX']
       }
+// AUDI MODELS
+      if (year === '2019' && make === 'AUDI') {
+        modelList = ['A3',  'A4', 'A5', 'A6', 'A7', 'A8', 'Q5', 'Q7', 'Q8', 'RS5', 'S3', 'S4', 'SQ5', 'TT', 'TTS']
+      }
+      if (year === '2018' && make === 'AUDI') {
+        modelList = ['A3',  'A4', 'A4 ALLROAD', 'A5', 'A6', 'A7', 'A8', 'Q5', 'Q7', 'Q8', 'RS5', 'S3', 'S4', 'SQ5', 'TT', 'TTS']
+      }
+      if (year === '2017' && make === 'AUDI') {
+        modelList = ['A3',  'A4', 'A4 ALLROAD', 'A5', 'A6', 'A7', 'A8', 'Q3', 'Q5', 'Q7', 'Q8', 'RS3', 'RS5', 'S3', 'S4', 'SQ5', 'TT', 'TTS']
+      }
+      if (year === '2016' && make === 'AUDI') {
+        modelList = ['A3',  'A4', 'A4 ALLROAD', 'A5', 'A6', 'A7', 'A8', 'Q3', 'Q5', 'RS7', 'S3', 'S4','S5', 'S6', 'S7', 'SQ5', 'TT', 'TTS']
+      }
+      if (year === '2015' && make === 'AUDI') {
+        modelList = ['A3',  'A4', 'A4 ALLROAD', 'A5', 'A6', 'A7', 'A8', 'Q3', 'Q5', 'Q7',  'R8', 'RS5', 'RS7',  'S3', 'S4','S5', 'S6', 'S7', 'SQ5', 'TT', 'TTS']
+      }
+      if (year === '2014' && make === 'AUDI') {
+        modelList = ['A4', 'A4 ALLROAD', 'A5', 'A6', 'A7', 'A8', 'Q5', 'Q7',  'R8', 'RS5', 'RS7', 'S4','S5', 'S6', 'S7', 'S8', 'SQ5', 'TT', 'TTS']
+      }
+      if (year === '2013' && make === 'AUDI') {
+        modelList = ['A4', 'A4', 'A4 ALLROAD', 'A5', 'A6', 'A7', 'A8', 'Q5', 'Q7', 'RS5', 'S4','S5', 'S6', 'S7', 'S8', 'TT', 'TT RS', 'TTS']
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       // BMW Models//
       if (year === '2019' && make === 'BMW') {
