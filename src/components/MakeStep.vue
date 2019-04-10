@@ -25,7 +25,7 @@ export default {
         'BMW',
         'BUICK',
         'CADILLAC',
-        'CHEVOLET',
+        'CHEVROLET',
         'CHRYSLER',
         'DODGE',
         'FORD',
