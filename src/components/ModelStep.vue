@@ -1,5 +1,6 @@
 <template>
   <v-card>
+    <span>Select Your Vehcile Model {{ msg }}</span>
     <v-layout>
       <v-flex>
         <v-btn

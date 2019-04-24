@@ -1,26 +1,14 @@
 <template>
-
   <v-card>
-    <span>Address {{ msg }}</span>
+    <span>Year You Were Born {{ msg }}</span>
     <v-layout>
       <v-flex>
         <v-text-field
-          label="Street Address"
+          label="Birth Year"
           single-line
           outline
         >
-        </v-text-field>
-        <v-text-field
-          label="City"
-          single-line
-          outline
-        >
-        </v-text-field>
-        <v-text-field
-          label="Zip Code"
-          single-line
-          outline
-        >
+
         </v-text-field>
         <v-layout justify-center>
           <v-btn
@@ -37,11 +25,11 @@
 
 <script>
 export default {
-  name: 'AddressStep',
+  name: 'BirthyearStep',
   methods: {
     onItemClick (item) {
       this.$store.dispatch('appStore/setOwnership', item)
-      this.$store.dispatch('appStore/setStep', 12)
+      this.$store.dispatch('appStore/setStep', 11)
     }
   }
 }

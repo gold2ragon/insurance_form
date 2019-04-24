@@ -1,7 +1,6 @@
 <template>
   <v-card>
-
-    <span>Select Your Vehicle Year {{ msg }}</span>
+    <span>Select Your Birth Month {{ msg }}</span>
     <v-layout>
       <v-flex>
         <v-btn
@@ -18,22 +17,20 @@
 
 <script>
 export default {
-  name: 'YearStep',
+  name: 'BirthdayStep',
   data () {
     return {
       years: [
-        '2019',
-        '2018',
-        '2017', '2016', '2015', '2014', '2013', '2012',
-        '2011', '2010', '2009', '2008', '2007', '2006', '2005',
-        '2004', '2003', '2002', '2001', '2000', '1999', '1998', '1997'
+        'January','Febuary','March', 'April', 'May',
+        'June', 'July', 'August', 'September', 'October',
+        'November', 'December'
       ]
     }
   },
   methods: {
     onItemClick (year) {
       this.$store.dispatch('appStore/setYear', year)
-      this.$store.dispatch('appStore/setStep', 2)
+      this.$store.dispatch('appStore/setStep', 9)
     }
   }
 }

@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     onNext () {
-      this.$store.dispatch('appStore/setStep', 5)
+      this.$store.dispatch('appStore/setStep', 12)
     }
   }
 }
