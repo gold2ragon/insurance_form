@@ -3,21 +3,13 @@
     <h1>{{ msg }}</h1>
     <v-stepper v-model="step">
       <v-stepper-header>
-        <v-stepper-step :complete="step > 1" step="1">Select Year</v-stepper-step>
+        <v-stepper-step :complete="step > 1" step="1">Your Car </v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step :complete="step > 2" step="2">Select Make</v-stepper-step>
+        <v-stepper-step :complete="step > 2" step="2">Drivers</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step :complete="step > 3" step="3">Select Model</v-stepper-step>
+        <v-stepper-step :complete="step > 3" step="3">Contact</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step :complete="step > 4" step="4">Select Add</v-stepper-step>
-        <v-divider></v-divider>
-        <v-stepper-step :complete="step > 5" step="5">Select Gender</v-stepper-step>
-        <v-divider></v-divider>
-        <v-stepper-step :complete="step > 6" step="6">Select Name</v-stepper-step>
-        <v-divider></v-divider>
-        <v-stepper-step :complete="step > 7" step="7"></v-stepper-step>
-        <v-divider></v-divider>
-        <v-stepper-step step="8"></v-stepper-step>
+
       </v-stepper-header>
       <v-stepper-items>
         <v-stepper-content step="1">

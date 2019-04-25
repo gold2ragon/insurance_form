@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'Add Vehicle',
+  name: 'Gender Step',
   methods: {
     onItemClick (item) {
       this.$store.dispatch('appStore/setOwnership', item)
