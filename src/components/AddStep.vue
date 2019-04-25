@@ -29,7 +29,11 @@ export default {
   methods: {
     onItemClick (item) {
       this.$store.dispatch('appStore/setOwnership', item)
-      this.$store.dispatch('appStore/setStep', 5)
+      if (item === 'No') {
+        this.$store.dispatch('appStore/setStep', 5)
+      } else {
+        this.$store.dispatch('appStore/setStep', 1)
+      }
     }
   }
 }
