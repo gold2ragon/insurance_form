@@ -2,15 +2,33 @@
   <v-container>
     <h1>{{ msg }}</h1>
     <v-stepper v-model="step">
-      <v-stepper-header>
+      <!-- <v-stepper-header>
         <v-stepper-step :complete="step > 1" step="1">Your Car </v-stepper-step>
         <v-divider></v-divider>
         <v-stepper-step :complete="step > 2" step="2">Drivers</v-stepper-step>
         <v-divider></v-divider>
         <v-stepper-step :complete="step > 3" step="3">Contact</v-stepper-step>
         <v-divider></v-divider>
-
-      </v-stepper-header>
+        <v-stepper-step :complete="step > 4" step="4">Driver Info</v-stepper-step>
+        <v-divider></v-divider>
+        <v-stepper-step :complete="step > 5" step="5">Select Gender</v-stepper-step>
+        <v-divider></v-divider>
+        <v-stepper-step :complete="step > 6" step="6">Select Name</v-stepper-step>
+        <v-divider></v-divider>
+        <v-stepper-step :complete="step > 7" step="7"></v-stepper-step>
+        <v-divider></v-divider>
+        <v-stepper-step step="8"></v-stepper-step>
+      </v-stepper-header> -->
+      <v-layout row wrap>
+        <v-flex class="justify-end">
+          <v-btn color="primary" @click="onPrevious">
+            Previous
+          </v-btn>
+          <v-btn @click="onNext">
+            Next
+          </v-btn>
+        </v-flex>
+      </v-layout>
       <v-stepper-items>
         <v-stepper-content step="1">
           <year-step></year-step>
@@ -114,6 +132,18 @@ export default {
       },
       set (val) {
         this.$store.dispatch('appStore/setStep', val)
+      }
+    }
+  },
+  methods: {
+    onNext () {
+      if (this.step <= 12) {
+        this.step += 1;
+      }
+    },
+    onPrevious () {
+      if (this.step >= 1) {
+        this.step -= 1;
       }
     }
   }
