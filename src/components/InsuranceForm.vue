@@ -137,7 +137,7 @@ export default {
   },
   methods: {
     onNext () {
-      if (this.step <= 8) {
+      if (this.step <= 12) {
         this.step += 1;
       }
     },
