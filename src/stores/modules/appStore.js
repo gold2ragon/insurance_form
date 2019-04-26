@@ -119,14 +119,7 @@ const sendEmail = () => {
       'accept-language': 'en_US',
       'content-type': 'application/x-www-form-urlencoded'
     },
-    body: {
-      firstname: state.firstname,
-      lastname: state.lastname,
-      street: state.street_address,
-      city: state.zipcode,
-      phone: state.phone_number,
-      vehicle: JSON.stringify(state.c_vehicles)
-    }
+    body: data
   }).then(response => {
     console.log('Post data successfully!')
     console.log(response)
