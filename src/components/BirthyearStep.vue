@@ -7,13 +7,14 @@
           label="Birth Year"
           single-line
           outline
+          v-model="birthYear"
         >
 
         </v-text-field>
         <v-layout justify-center>
           <v-btn
           color="primary"
-            @click="onItemClick('Next')"
+            @click="onItemClick()"
           >
             Next
           </v-btn>
@@ -26,9 +27,18 @@
 <script>
 export default {
   name: 'BirthyearStep',
+  computed: {
+    birthYear: {
+      get () {
+        return this.$store.state.birth_year
+      },
+      set (value) {
+        this.$store.dispatch('appStore/setBirthYear', value)
+      }
+    }
+  },
   methods: {
-    onItemClick (item) {
-      this.$store.dispatch('appStore/setOwnership', item)
+    onItemClick () {
       this.$store.dispatch('appStore/setStep', 11)
     }
   }

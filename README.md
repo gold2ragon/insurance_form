@@ -1,6 +1,9 @@
 # insurance
 
 ## Project setup
+Copy and Paste the `dev.config.js` file and rename it with `config.js`.<br>
+Replace your key to the `API_KEY` and `Template ID` in `config.js` file.
+
 ```
 yarn install
 ```

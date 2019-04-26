@@ -1,0 +1,2 @@
+exports.USER_ID = 'YOUR KEY'
+exports.TEMPLATE_ID = 'YOUR TEMPLATE ID'

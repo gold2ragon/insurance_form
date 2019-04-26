@@ -28,7 +28,7 @@ export default {
   name: 'Married Step',
   methods: {
     onItemClick (item) {
-      this.$store.dispatch('appStore/setOwnership', item)
+      this.$store.dispatch('appStore/setMarried', item)
       this.$store.dispatch('appStore/setStep', 7)
     }
   }

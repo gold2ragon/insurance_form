@@ -24,7 +24,7 @@
           <v-btn color="primary" @click="onPrevious">
             Previous
           </v-btn>
-          <v-btn @click="onNext">
+          <v-btn @click="onNext" v-show="this.appState.showNext">
             Next
           </v-btn>
         </v-flex>
@@ -78,6 +78,10 @@
           <contact-step></contact-step>
         </v-stepper-content>
 
+        <v-stepper-content step="13">
+          <success-step></success-step>
+        </v-stepper-content>
+
       </v-stepper-items>
     </v-stepper>
   </v-container>
@@ -88,7 +92,6 @@ import AddressStep from './AddressStep.vue'
 import ContactStep from './ContactStep.vue'
 import MakeStep from './MakeStep.vue'
 import ModelStep from './ModelStep.vue'
-import NameStep from './NameStep.vue'
 import YearStep from './YearStep.vue'
 import AddStep from './AddStep.vue'
 import GenderStep from './GenderStep.vue'
@@ -97,6 +100,7 @@ import HomeownerStep from './HomeownerStep.vue'
 import BirthmonthStep from './BirthmonthStep.vue'
 import BirthdayStep from './BirthdayStep.vue'
 import BirthyearStep from './BirthyearStep.vue'
+import SuccessStep from './SuccessStep.vue'
 
 export default {
   name: 'InsuranceForm',
@@ -105,7 +109,6 @@ export default {
     ContactStep,
     MakeStep,
     ModelStep,
-    NameStep,
     YearStep,
     AddStep,
     GenderStep,
@@ -113,7 +116,8 @@ export default {
     HomeownerStep,
     BirthmonthStep,
     BirthdayStep,
-    BirthyearStep
+    BirthyearStep,
+    SuccessStep
   },
   props: {
     msg: String
@@ -138,12 +142,12 @@ export default {
   methods: {
     onNext () {
       if (this.step <= 12) {
-        this.step += 1;
+        this.step += 1
       }
     },
     onPrevious () {
       if (this.step >= 1) {
-        this.step -= 1;
+        this.step -= 1
       }
     }
   }

@@ -28,7 +28,7 @@ export default {
   name: 'Gender Step',
   methods: {
     onItemClick (item) {
-      this.$store.dispatch('appStore/setOwnership', item)
+      this.$store.dispatch('appStore/setGender', item)
       this.$store.dispatch('appStore/setStep', 6)
     }
   }

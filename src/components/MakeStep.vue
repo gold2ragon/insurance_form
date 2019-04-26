@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <span>Select Your Vehicle Make {{ msg }}</span>
-    
+
     <v-btn flat @click.native="step = 2">Previous</v-btn>
     <v-btn color="primary" @click.native="step = 4">Continue</v-btn>
 
@@ -64,9 +64,7 @@ export default {
   }
 }
 
-
 </script>
-
 
 <style scoped lang="scss">
 </style>

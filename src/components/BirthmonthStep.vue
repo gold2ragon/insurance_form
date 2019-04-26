@@ -4,7 +4,7 @@
     <v-layout>
       <v-flex>
         <v-btn
-          v-for="(item, index) in years"
+          v-for="(item, index) in months"
           :key="index"
           @click="onItemClick(item)"
         >
@@ -20,16 +20,16 @@ export default {
   name: 'BirthdayStep',
   data () {
     return {
-      years: [
-        'January','Febuary','March', 'April', 'May',
+      months: [
+        'January', 'Febuary', 'March', 'April', 'May',
         'June', 'July', 'August', 'September', 'October',
         'November', 'December'
       ]
     }
   },
   methods: {
-    onItemClick (year) {
-      this.$store.dispatch('appStore/setYear', year)
+    onItemClick (month) {
+      this.$store.dispatch('appStore/setBirthMonth', month)
       this.$store.dispatch('appStore/setStep', 9)
     }
   }

@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
-
+// import createPersistedState from 'vuex-persistedstate'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 import appStore from './modules/appStore'
 
 Vue.use(Vuex)
+Vue.use(VueAxios, axios)
 
 const state = {
   //
@@ -31,6 +33,6 @@ export default new Vuex.Store({
     appStore
   },
   plugins: [
-    createPersistedState()
+    // createPersistedState()
   ]
 })

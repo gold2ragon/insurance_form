@@ -28,7 +28,6 @@ export default {
   name: 'Add Vehicle',
   methods: {
     onItemClick (item) {
-      this.$store.dispatch('appStore/setOwnership', item)
       if (item === 'No') {
         this.$store.dispatch('appStore/setStep', 5)
       } else {

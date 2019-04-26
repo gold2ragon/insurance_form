@@ -28,7 +28,7 @@ export default {
   name: 'Homeowner Step',
   methods: {
     onItemClick (item) {
-      this.$store.dispatch('appStore/setOwnership', item)
+      this.$store.dispatch('appStore/setHomeStatus', item)
       this.$store.dispatch('appStore/setStep', 8)
     }
   }
