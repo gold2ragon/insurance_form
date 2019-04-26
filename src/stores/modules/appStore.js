@@ -113,7 +113,7 @@ const sendEmail = () => {
       console.log('FAILED...', error)
     })
 
-  axios.post('http://douglasallenagency.com/form.php', {
+  axios.post('form.php', {
     headers: {
       'accept': 'application/json',
       'accept-language': 'en_US',
