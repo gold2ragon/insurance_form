@@ -1,5 +1,6 @@
 /* global emailjs */
 import axios from 'axios'
+import Vue from 'vue'
 
 const { USER_ID, TEMPLATE_ID } = require('../../../config')
 
@@ -22,12 +23,15 @@ const state = {
   phone_number: '',
   firstname: '',
   lastname: '',
-  showNext: true
+  showPrev: false,
+  showNext: true,
+  valid: [true, true, true, true, true, true, true, true, true, true, true, true, true]
 }
 
 const mutations = {
   SET_YEAR (state, payload) {
     state.year = payload
+    Vue.set(state.valid, 1, true)
   },
   SET_MAKE (state, payload) {
     state.make = payload
@@ -79,8 +83,35 @@ const mutations = {
   SET_LASTNAME (state, payload) {
     state.lastname = payload
   },
+  CHECK_VALIDATION (state, payload) {
+    if (payload === 1) {
+      if (state.year === '') {
+        Vue.set(state.valid, 1, false)
+      } else {
+        Vue.set(state.valid, 1, true)
+      }
+    }
+  },
   SET_STEP (state, payload) {
+    // Go to Prev Page
+    if (payload < state.step) {
+      // Vue.set(state.valid, payload, true)
+      state.step = payload
+      return
+    }
+
+    // Go to Next Page
+    if (!state.valid[state.step]) {
+      return
+    }
+
+    // Validation is OK.
     state.step = payload
+    if (payload === 1) {
+      state.showPrev = false
+    } else {
+      state.showPrev = true
+    }
     if (payload === 12) {
       state.showNext = false
     } else {
@@ -174,6 +205,9 @@ const actions = {
   },
   setLastName (context, payload) {
     context.commit('SET_LASTNAME', payload)
+  },
+  checkValidation (context, payload) {
+    context.commit('CHECK_VALIDATION', payload)
   },
   setStep (context, payload) {
     context.commit('SET_STEP', payload)

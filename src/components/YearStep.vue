@@ -1,12 +1,13 @@
 <template>
   <v-card>
 
-    <span>Select Your Vehicle Year {{ msg }}</span>
+    <span v-bind:style="{color: valid ? '':'red'}">Select Your Vehicle Year {{ msg }}</span>
     <v-layout>
       <v-flex>
         <v-btn
           v-for="(item, index) in years"
           :key="index"
+          :style="{'background-color': item == year ? 'darkgrey' : ''}"
           @click="onItemClick(item)"
         >
           {{ item }}
@@ -28,6 +29,18 @@ export default {
         '2011', '2010', '2009', '2008', '2007', '2006', '2005',
         '2004', '2003', '2002', '2001', '2000', '1999', '1998', '1997'
       ]
+    }
+  },
+  computed: {
+    year: {
+      get() {
+        return this.appState.year
+      }
+    },
+    valid: {
+      get() {
+        return this.appState.valid[1]
+      }
     }
   },
   methods: {

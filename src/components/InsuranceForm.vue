@@ -21,7 +21,7 @@
       </v-stepper-header> -->
       <v-layout row wrap>
         <v-flex class="justify-end">
-          <v-btn color="primary" @click="onPrevious">
+          <v-btn color="primary" @click="onPrevious" v-show="this.appState.showPrev">
             Previous
           </v-btn>
           <v-btn @click="onNext" v-show="this.appState.showNext">
@@ -142,6 +142,7 @@ export default {
   methods: {
     onNext () {
       if (this.step <= 12) {
+        this.$store.dispatch('appStore/checkValidation', this.step)
         this.step += 1
       }
     },
