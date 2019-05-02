@@ -1,17 +1,21 @@
 <template>
 
   <v-card>
-    <span>Address {{ msg }}</span>
-    <v-layout>
+    <span>Address</span>
+    <v-layout ref="form">
       <v-flex>
         <v-text-field
-          label="Street Address"
+          ref="address"
+          :rules="[rules.addressRequired]"
+          placeholder="Street Address"
           single-line
           outline
           v-model="streetAddress"
         >
         </v-text-field>
         <v-text-field
+          ref="city"
+          :rules="[rules.cityRequired]"
           label="City"
           single-line
           outline
@@ -19,6 +23,8 @@
         >
         </v-text-field>
         <v-text-field
+          ref="zip"
+          :rules="[rules.zipcodeRequired]"
           label="Zip Code"
           single-line
           outline
@@ -42,7 +48,23 @@
 <script>
 export default {
   name: 'AddressStep',
+  data () {
+    return {
+      rules: {
+        addressRequired: value => !!value || 'Enter your home address.',
+        cityRequired: value => !!value || 'Enter your home address.',
+        zipcodeRequired: value => !!value || 'Enter your home address.'
+      }
+    }
+  },
   computed: {
+    form () {
+      return {
+        address: this.streetAddress,
+        city: this.city,
+        zip: this.zipcode,
+      }
+    },
     streetAddress: {
       get () {
         return this.$store.state.street_address
@@ -70,6 +92,11 @@ export default {
   },
   methods: {
     onItemClick (item) {
+      Object.keys(this.form).forEach(k => {
+        if (!this.form[k]) this.formHasErrors = true
+        this.$refs[k].validate(true)
+      })
+      this.$store.dispatch('appStore/checkValidation', 11)
       this.$store.dispatch('appStore/setStep', 12)
     }
   }

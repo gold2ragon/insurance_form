@@ -91,6 +91,13 @@ const mutations = {
         Vue.set(state.valid, 1, true)
       }
     }
+    if (payload === 11) {
+      if (state.street_address === '' || state.city === '' || state.zipcode === '') {
+        Vue.set(state.valid, 11, false)
+      } else {
+        Vue.set(state.valid, 11, true)
+      }
+    }
   },
   SET_STEP (state, payload) {
     // Go to Prev Page
