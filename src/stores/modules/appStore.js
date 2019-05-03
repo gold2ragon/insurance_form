@@ -101,7 +101,7 @@ const mutations = {
         Vue.set(state.valid, payload, true)
       }
     } else if (payload === 10) {
-      let re = /^(19[5-9]\d|20[0-4]\d|2050)$/
+      let re = /^(19[0-9]\d|20[0-4]\d|2050)$/
       if (re.test(state.birth_year)) {
         Vue.set(state.valid, 10, true)
       } else {
@@ -170,30 +170,30 @@ const sendEmail = () => {
   delete data['step']
   delete data['showNext']
   window.open('https://douglasallenagency.com/thankyou', '_blank')
-  // emailjs.init(USER_ID)
-  // emailjs.send('default_service', TEMPLATE_ID, {
-  //   from_name: state.firstname + ' ' + state.lastname,
-  //   to_name: 'Doug Allen',
-  //   message_html: JSON.stringify(data)
-  // })
-  //   .then((response) => {
-  //     console.log('SUCCESS!', response.status, response.text)
-  //     state.step = 13
-  //   }, (error) => {
-  //     console.log('FAILED...', error)
-  //   })
+  emailjs.init(USER_ID)
+  emailjs.send('default_service', TEMPLATE_ID, {
+    from_name: state.firstname + ' ' + state.lastname,
+    to_name: 'Doug Allen',
+    message_html: JSON.stringify(data)
+  })
+    .then((response) => {
+      console.log('SUCCESS!', response.status, response.text)
+      state.step = 13
+    }, (error) => {
+      console.log('FAILED...', error)
+    })
 
-  // axios.post('form.php', {
-  //   headers: {
-  //     'accept': 'application/json',
-  //     'accept-language': 'en_US',
-  //     'content-type': 'application/x-www-form-urlencoded'
-  //   },
-  //   body: data
-  // }).then(response => {
-  //   console.log('Post data successfully!')
-  //   console.log(response)
-  // })
+  axios.post('form.php', {
+    headers: {
+      'accept': 'application/json',
+      'accept-language': 'en_US',
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    body: data
+  }).then(response => {
+    console.log('Post data successfully!')
+    console.log(response)
+  })
 }
 
 const actions = {

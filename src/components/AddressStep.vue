@@ -1,47 +1,52 @@
 <template>
-
-  <v-card>
-    <span>Address</span>
-    <v-layout ref="form">
-      <v-flex>
-        <v-text-field
-          ref="address"
-          :error-messages="validAddress ? [] : ['Please enter your street address']"
-          label="Street Address"
-          single-line
-          outline
-          v-model="streetAddress"
-        >
-        </v-text-field>
-        <v-text-field
-          ref="city"
-          :error-messages="validCity ? [] : ['Please enter your city']"          
-          label="City"
-          single-line
-          outline
-          v-model="city"
-        >
-        </v-text-field>
-        <v-text-field
-          ref="zip"
-          :error-messages="validZipcode ? [] : ['Please enter your zipcode']"          
-          label="Zip Code"
-          single-line
-          outline
-          v-model="zipcode"
-        >
-        </v-text-field>
-        <v-layout justify-center>
-          <v-btn
-            color="primary"
-            @click="onItemClick('Next')"
+  <div>
+    <v-card>
+      <span>Address</span>
+      <v-layout ref="form">
+        <v-flex>
+          <v-text-field
+            ref="address"
+            :error-messages="validAddress ? [] : ['Please enter your street address']"
+            label="Street Address"
+            single-line
+            outline
+            @focus="show" data-layout="normal"
+            v-model="streetAddress"
           >
-            Next
-          </v-btn>
-        </v-layout>
-      </v-flex>
-    </v-layout>
-  </v-card>
+          </v-text-field>
+          <v-text-field
+            ref="city"
+            :error-messages="validCity ? [] : ['Please enter your city']"          
+            label="City"
+            single-line
+            outline
+            @focus="show" data-layout="normal"
+            v-model="city"
+          >
+          </v-text-field>
+          <v-text-field
+            ref="zip"
+            :error-messages="validZipcode ? [] : ['Please enter your zipcode']"          
+            label="Zip Code"
+            single-line
+            outline
+            @focus="show" data-layout="numeric"
+            v-model="zipcode"
+          >
+          </v-text-field>
+          <v-layout justify-center>
+            <v-btn
+              color="primary"
+              @click="onItemClick('Next')"
+            >
+              Next
+            </v-btn>
+          </v-layout>
+        </v-flex>
+      </v-layout>
+    </v-card>
+    <vue-touch-keyboard id="keyboard" v-if="visible" :layout="layout" :cancel="hide" :accept="accept" :input="input" :next="next" />
+  </div>
 </template>
 
 <script>
@@ -49,6 +54,12 @@ export default {
   name: 'AddressStep',
   data () {
     return {
+      visible: false,
+      layout: "normal",
+      input: null,
+      options: {
+        useKbEvents: false
+      }
     }
   },
   computed: {
@@ -103,6 +114,39 @@ export default {
     }
   },
   methods: {
+    accept(text) {
+      console.log("Input text: " + text);
+      this.hide();
+    },
+
+    show(e) {
+      this.input = e.target;
+      this.layout = e.target.dataset.layout;
+
+      if (!this.visible)
+        this.visible = true
+    },
+
+    hide() {
+      this.visible = false;
+    },
+    
+    next() {
+      let inputs = document.querySelectorAll("input");
+      let found = false;
+      [].forEach.call(inputs, (item, i) => {
+        if (!found && item == this.input && i < inputs.length - 1) {
+          found = true;
+          this.$nextTick(() => {
+            inputs[i+1].focus();
+          });
+        }
+      });
+      if (!found) {
+        this.input.blur();
+        this.hide();
+      }
+    },
     onItemClick (item) {
       Object.keys(this.form).forEach(k => {
         if (!this.form[k]) this.formHasErrors = true
