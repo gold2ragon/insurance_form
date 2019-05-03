@@ -67,7 +67,6 @@ export default {
   name: 'ContactStep',
   data () {
     return {
-      visible: false,
       layout: "normal",
       input: null,
       options: {
@@ -82,6 +81,11 @@ export default {
         phone_number: this.phone_number,
         firstname: this.firstname,
         lastname: this.lastname
+      }
+    },
+    visible: {
+      get() {
+        return this.appState.keyboard_visible
       }
     },
     validEmail: {
@@ -151,11 +155,11 @@ export default {
       this.layout = e.target.dataset.layout;
 
       if (!this.visible)
-        this.visible = true
+        this.$store.dispatch('appStore/setKeyboardVisible', true)
     },
 
     hide() {
-      this.visible = false;
+      this.$store.dispatch('appStore/setKeyboardVisible', false)
     },
     
     next() {

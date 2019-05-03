@@ -34,7 +34,6 @@ export default {
   name: 'BirthyearStep',
   data () {
     return {
-      visible: false,
       layout: "normal",
       input: null,
       options: {
@@ -46,6 +45,11 @@ export default {
     form () {
       return {
         birthYear: this.birthYear,
+      }
+    },
+    visible: {
+      get() {
+        return this.appState.keyboard_visible
       }
     },
     valid: {
@@ -73,11 +77,11 @@ export default {
       this.layout = e.target.dataset.layout;
 
       if (!this.visible)
-        this.visible = true
+        this.$store.dispatch('appStore/setKeyboardVisible', true)
     },
 
     hide() {
-      this.visible = false;
+      this.$store.dispatch('appStore/setKeyboardVisible', false)
     },
     
     next() {

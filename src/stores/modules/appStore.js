@@ -25,7 +25,8 @@ const state = {
   lastname: '',
   showPrev: false,
   showNext: true,
-  valid: [true, true, true, true, true, true, true, true, true, true, true, true, true]
+  valid: [true, true, true, true, true, true, true, true, true, true, true, true, true],
+  keyboard_visible: false
 }
 
 const fields = ['', 'year', 'make', 'model', '', 'gender', 'married', 'home_status', 'birth_month', 'birth_day', 'birth_year']
@@ -93,6 +94,9 @@ const mutations = {
   SET_LASTNAME (state, payload) {
     state.lastname = payload
   },
+  SET_KEYBOARD_VISIBLE (state, payload) {
+    state.keyboard_visible = payload
+  },
   CHECK_VALIDATION (state, payload) {
     if (payload < 10) {
       if (state[fields[payload]] === '') {
@@ -136,6 +140,7 @@ const mutations = {
     if (payload < state.step) {
       Vue.set(state.valid, state.step, true)
       state.step = payload
+      state.keyboard_visible = false
       return
     }
 
@@ -145,6 +150,7 @@ const mutations = {
     }
 
     // Validation is OK.
+    state.keyboard_visible = false
     state.step = payload
     if (payload === 1) {
       state.showPrev = false
@@ -253,6 +259,9 @@ const actions = {
   },
   hideNextButton (context) {
     context.commit('HIDE_NEXT_BUTTON')
+  },
+  setKeyboardVisible (context, payload) {
+    context.commit('SET_KEYBOARD_VISIBLE', payload)
   },
   submitData (context) {
     context.commit('SUBMIT_DATA')

@@ -54,7 +54,6 @@ export default {
   name: 'AddressStep',
   data () {
     return {
-      visible: false,
       layout: "normal",
       input: null,
       options: {
@@ -68,6 +67,11 @@ export default {
         address: this.streetAddress,
         city: this.city,
         zip: this.zipcode,
+      }
+    },
+    visible: {
+      get() {
+        return this.appState.keyboard_visible
       }
     },
     validAddress: {
@@ -124,11 +128,11 @@ export default {
       this.layout = e.target.dataset.layout;
 
       if (!this.visible)
-        this.visible = true
+        this.$store.dispatch('appStore/setKeyboardVisible', true)
     },
 
     hide() {
-      this.visible = false;
+      this.$store.dispatch('appStore/setKeyboardVisible', false)
     },
     
     next() {
