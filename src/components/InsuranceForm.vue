@@ -141,6 +141,7 @@ export default {
   },
   methods: {
     onNext () {
+      console.log('---', this.step)
       if (this.step <= 12) {
         this.$store.dispatch('appStore/checkValidation', this.step)
         this.step += 1

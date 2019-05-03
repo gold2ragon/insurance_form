@@ -1,18 +1,20 @@
 <template>
   <v-card>
 
-<span>Do You Own A Home? {{ msg }}</span>
+<span v-bind:style="{color: valid ? '':'red'}">Do You Own A Home?</span>
 
     <v-layout>
       <v-flex>
         </v-text-field>
         <v-layout justify-center>
           <v-btn
+            :style="{'background-color': home_status == 'Own Home' ? 'darkgrey' : ''}"
             @click="onItemClick('Own Home')"
           >
             Own Home
           </v-btn>
           <v-btn
+            :style="{'background-color': home_status == 'Rent' ? 'darkgrey' : ''}"
             @click="onItemClick('Rent')"
           >
             Rent
@@ -26,6 +28,18 @@
 <script>
 export default {
   name: 'Homeowner Step',
+  computed: {
+    home_status: {
+      get() {
+        return this.appState.home_status
+      }
+    },
+    valid: {
+      get() {
+        return this.appState.valid[7]
+      }
+    }
+  },
   methods: {
     onItemClick (item) {
       this.$store.dispatch('appStore/setHomeStatus', item)

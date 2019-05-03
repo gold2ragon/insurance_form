@@ -28,6 +28,8 @@ const state = {
   valid: [true, true, true, true, true, true, true, true, true, true, true, true, true]
 }
 
+const fields = ['', 'year', 'make', 'model', '', 'gender', 'married', 'home_status', 'birth_month', 'birth_day', 'birth_year']
+
 const mutations = {
   SET_YEAR (state, payload) {
     state.year = payload
@@ -35,9 +37,11 @@ const mutations = {
   },
   SET_MAKE (state, payload) {
     state.make = payload
+    Vue.set(state.valid, 2, true)
   },
   SET_MODEL (state, payload) {
     state.model = payload
+    Vue.set(state.valid, 3, true)
     state.c_vehicles.push({
       year: state.year,
       make: state.make,
@@ -46,20 +50,26 @@ const mutations = {
   },
   SET_GENDER (state, payload) {
     state.gender = payload
+    Vue.set(state.valid, 5, true)
   },
   SET_MARRIED (state, payload) {
     state.married = payload
+    Vue.set(state.valid, 6, true)
   },
   SET_HOMESTATUS (state, payload) {
     state.home_status = payload
+    Vue.set(state.valid, 7, true)
   },
   SET_BIRTHMONTH (state, payload) {
     state.birth_month = payload
+    Vue.set(state.valid, 8, true)
   },
   SET_BIRTHDAY (state, payload) {
+    Vue.set(state.valid, 9, true)
     state.birth_day = payload
   },
   SET_BIRTHYEAR (state, payload) {
+    Vue.set(state.valid, 10, true)
     state.birth_year = payload
   },
   SET_STREETADDRESS (state, payload) {
@@ -84,25 +94,47 @@ const mutations = {
     state.lastname = payload
   },
   CHECK_VALIDATION (state, payload) {
-    if (payload === 1) {
-      if (state.year === '') {
-        Vue.set(state.valid, 1, false)
+    if (payload < 10) {
+      if (state[fields[payload]] === '') {
+        Vue.set(state.valid, payload, false)
       } else {
-        Vue.set(state.valid, 1, true)
+        Vue.set(state.valid, payload, true)
       }
-    }
-    if (payload === 11) {
-      if (state.street_address === '' || state.city === '' || state.zipcode === '') {
+    } else if (payload === 10) {
+      let re = /^(19[5-9]\d|20[0-4]\d|2050)$/
+      if (re.test(state.birth_year)) {
+        Vue.set(state.valid, 10, true)
+      } else {
+        Vue.set(state.valid, 10, false)
+      }
+    } else if (payload === 11) {
+      let re = /(^\d{5}$)|(^\d{5}-\d{4}$)/
+      if (state.street_address === '' || state.city === '' || !re.test(state.zipcode)) {
         Vue.set(state.valid, 11, false)
       } else {
         Vue.set(state.valid, 11, true)
       }
+    } else if (payload === 12) {
+      let remail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      let rphone = /^\+?(?:[0-9] ?){6,14}[0-9]$/
+      if (!remail.test(state.email) || !rphone.test(state.phone_number) || state.firstname === '' || state.lastname === '') {
+        console.log('false')
+        Vue.set(state.valid, 12, false)
+      } else {
+        console.log('true')
+        Vue.set(state.valid, 12, true)
+      }
     }
   },
   SET_STEP (state, payload) {
+    if (payload === 1 && state.step === 4) {
+      state.year = ''
+      state.make = ''
+      state.model = ''
+    }
     // Go to Prev Page
     if (payload < state.step) {
-      // Vue.set(state.valid, payload, true)
+      Vue.set(state.valid, state.step, true)
       state.step = payload
       return
     }
@@ -126,7 +158,7 @@ const mutations = {
     }
   },
   SUBMIT_DATA (state) {
-    sendEmail()
+    // sendEmail()
   }
 }
 
@@ -138,30 +170,30 @@ const sendEmail = () => {
   delete data['step']
   delete data['showNext']
   window.open('https://douglasallenagency.com/thankyou', '_blank')
-  emailjs.init(USER_ID)
-  emailjs.send('default_service', TEMPLATE_ID, {
-    from_name: state.firstname + ' ' + state.lastname,
-    to_name: 'Doug Allen',
-    message_html: JSON.stringify(data)
-  })
-    .then((response) => {
-      console.log('SUCCESS!', response.status, response.text)
-      state.step = 13
-    }, (error) => {
-      console.log('FAILED...', error)
-    })
+  // emailjs.init(USER_ID)
+  // emailjs.send('default_service', TEMPLATE_ID, {
+  //   from_name: state.firstname + ' ' + state.lastname,
+  //   to_name: 'Doug Allen',
+  //   message_html: JSON.stringify(data)
+  // })
+  //   .then((response) => {
+  //     console.log('SUCCESS!', response.status, response.text)
+  //     state.step = 13
+  //   }, (error) => {
+  //     console.log('FAILED...', error)
+  //   })
 
-  axios.post('form.php', {
-    headers: {
-      'accept': 'application/json',
-      'accept-language': 'en_US',
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    body: data
-  }).then(response => {
-    console.log('Post data successfully!')
-    console.log(response)
-  })
+  // axios.post('form.php', {
+  //   headers: {
+  //     'accept': 'application/json',
+  //     'accept-language': 'en_US',
+  //     'content-type': 'application/x-www-form-urlencoded'
+  //   },
+  //   body: data
+  // }).then(response => {
+  //   console.log('Post data successfully!')
+  //   console.log(response)
+  // })
 }
 
 const actions = {

@@ -1,18 +1,19 @@
 <template>
   <v-card>
 
-<span>Are You Married? {{ msg }}</span>
-
+<span v-bind:style="{color: valid ? '':'red'}">Are You Married?</span>
     <v-layout>
       <v-flex>
         </v-text-field>
         <v-layout justify-center>
           <v-btn
+            :style="{'background-color': married == 'Yes' ? 'darkgrey' : ''}"
             @click="onItemClick('Yes')"
           >
             Yes
           </v-btn>
           <v-btn
+            :style="{'background-color': married == 'No' ? 'darkgrey' : ''}"
             @click="onItemClick('No')"
           >
             No
@@ -26,6 +27,18 @@
 <script>
 export default {
   name: 'Married Step',
+  computed: {
+    married: {
+      get() {
+        return this.appState.married
+      }
+    },
+    valid: {
+      get() {
+        return this.appState.valid[6]
+      }
+    }
+  },
   methods: {
     onItemClick (item) {
       this.$store.dispatch('appStore/setMarried', item)

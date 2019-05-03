@@ -2,13 +2,14 @@
 
 
   <v-card>
-    <span>Select Your Vehcile Model {{ msg }}</span>
+    <span v-bind:style="{color: valid ? '':'red'}">Select Your Vehcile Model</span>
 
     <v-layout>
       <v-flex>
         <v-btn
           v-for="(item, index) in selectedModels"
           :key="index"
+          :style="{'background-color': item == model ? 'darkgrey' : ''}"
           @click="onItemClick(item)"
         >
           {{ item }}
@@ -1616,6 +1617,16 @@ export default {
         modelList = ['850', '960']}
 
       return modelList
+    },
+    model: {
+      get() {
+        return this.appState.model
+      }
+    },
+    valid: {
+      get() {
+        return this.appState.valid[3]
+      }
     }
   },
   methods: {

@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <span>Select Your Vehicle Make {{ msg }}</span>
+    <span v-bind:style="{color: valid ? '':'red'}">Select Your Vehicle Make</span>
 
     <v-btn flat @click.native="step = 2">Previous</v-btn>
     <v-btn color="primary" @click.native="step = 4">Continue</v-btn>
@@ -10,6 +10,7 @@
         <v-btn
           v-for="(item, index) in makes"
           :key="index"
+          :style="{'background-color': item == make ? 'darkgrey' : ''}"
           @click="onItemClick(item)"
         >
           {{ item }}
@@ -53,6 +54,19 @@ export default {
         'VOLKSWAGEN',
         'VOLVO'
       ]
+    }
+  },
+
+  computed: {
+    make: {
+      get() {
+        return this.appState.make
+      }
+    },
+    valid: {
+      get() {
+        return this.appState.valid[2]
+      }
     }
   },
 

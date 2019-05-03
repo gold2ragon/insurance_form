@@ -1,7 +1,7 @@
 <template>
   <v-card>
 
-    <span v-bind:style="{color: valid ? '':'red'}">Select Your Vehicle Year {{ msg }}</span>
+    <span v-bind:style="{color: valid ? '':'red'}">Select Your Vehicle Year</span>
     <v-layout>
       <v-flex>
         <v-btn

@@ -1,7 +1,7 @@
 <template>
   <v-card>
 
-<span>Add Vehicle? {{ msg }}</span>
+<span>Add Vehicle?</span>
 
     <v-layout>
       <v-flex>

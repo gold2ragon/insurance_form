@@ -1,12 +1,13 @@
 <template>
   <v-card>
 
-    <span>Select Your Birth Day {{ msg }}</span>
+    <span v-bind:style="{color: valid ? '':'red'}">Select Your Birth Day</span>
     <v-layout>
       <v-flex>
         <v-btn
           v-for="(item, index) in days"
           :key="index"
+          :style="{'background-color': item == day ? 'darkgrey' : ''}"
           @click="onItemClick(item)"
         >
           {{ item }}
@@ -30,6 +31,18 @@ export default {
         '23', '24', '25', '26',
         '27', '28', '29', '30', '31'
       ]
+    }
+  },
+  computed: {
+    day: {
+      get() {
+        return this.appState.birth_day
+      }
+    },
+    valid: {
+      get() {
+        return this.appState.valid[8]
+      }
     }
   },
   methods: {

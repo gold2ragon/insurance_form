@@ -1,11 +1,12 @@
 <template>
   <v-card>
-    <span>Select Your Birth Month {{ msg }}</span>
+    <span v-bind:style="{color: valid ? '':'red'}">Select Your Birth Month</span>
     <v-layout>
       <v-flex>
         <v-btn
           v-for="(item, index) in months"
           :key="index"
+          :style="{'background-color': item == month ? 'darkgrey' : ''}"
           @click="onItemClick(item)"
         >
           {{ item }}
@@ -25,6 +26,18 @@ export default {
         'June', 'July', 'August', 'September', 'October',
         'November', 'December'
       ]
+    }
+  },
+  computed: {
+    month: {
+      get() {
+        return this.appState.birth_month
+      }
+    },
+    valid: {
+      get() {
+        return this.appState.valid[8]
+      }
     }
   },
   methods: {
